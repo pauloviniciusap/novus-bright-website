@@ -355,3 +355,61 @@ footer{
   form{ grid-template-columns: 1fr; }
   textarea{ grid-column: auto; }
 }
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+
+.modal{
+  width: min(520px, 100%);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(26,31,39,.95);
+  box-shadow: 0 18px 45px rgba(0,0,0,.55);
+  padding: 18px;
+}
+
+.modal-head{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.modal-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(45,212,191,.12);
+  border: 1px solid rgba(45,212,191,.25);
+  color: var(--ok);
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.modal-title{
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  font-size: 18px;
+}
+
+.modal-sub{
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.modal-actions{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
