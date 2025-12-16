@@ -1,112 +1,118 @@
-(function(){
+(function () {
   const form = document.getElementById("quoteForm");
-  const noticeOk = document.getElementById("noticeOk");
+  const noticeOk = document.getElementById("noticeOk"); // optional, can exist but we won't use it
   const noticeErr = document.getElementById("noticeErr");
   const submitBtn = document.getElementById("submitBtn");
   const yearEl = document.getElementById("year");
 
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  if (!form) return;
 
-  function show(el){
+  function show(el) {
     if (!el) return;
     el.style.display = "block";
     el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  function hide(el){
+  function hide(el) {
     if (!el) return;
     el.style.display = "none";
   }
 
-  function requiredValue(name){
+  function requiredValue(name) {
     const el = form.querySelector(`[name="${name}"]`);
     return (el && String(el.value || "").trim()) || "";
   }
 
-  function toMailtoBody(data){
-    const lines = [
-      "New cleaning request (Novus Bright)",
-      "",
-      `Name: ${data.name}`,
-      `Phone: ${data.phone}`,
-      `Email: ${data.email}`,
-      `Address: ${data.address}`,
-      `Service type: ${data.service_type}`,
-      `Frequency: ${data.frequency}`,
-      `Preferred date: ${data.preferred_date}`,
-      `Preferred time: ${data.preferred_time}`,
-      `Bedrooms: ${data.bedrooms}`,
-      `Bathrooms: ${data.bathrooms}`,
-      `Pets: ${data.pets}`,
-      "",
-      "Notes:",
-      data.notes || "(none)"
-    ];
-    return encodeURIComponent(lines.join("\n"));
+  // Netlify encode helper (application/x-www-form-urlencoded)
+  function encodeForm(formEl) {
+    const data = new URLSearchParams();
+    new FormData(formEl).forEach((value, key) => data.append(key, value));
+    return data.toString();
   }
 
-  async function submitToFormspree(actionUrl, formData){
-    const res = await fetch(actionUrl, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: formData
-    });
-    const json = await res.json().catch(()=> ({}));
-    if (!res.ok) {
-      const msg = (json && json.errors && json.errors[0] && json.errors[0].message) || "Submission failed.";
-      throw new Error(msg);
+  // Success modal
+  function openModal() {
+    const overlay = document.getElementById("modalOverlay");
+    const closeBtn = document.getElementById("modalClose");
+    if (!overlay) return;
+
+    overlay.style.display = "flex";
+    overlay.setAttribute("aria-hidden", "false");
+
+    function close() {
+      overlay.style.display = "none";
+      overlay.setAttribute("aria-hidden", "true");
+      document.removeEventListener("keydown", onKey);
     }
-    return true;
-  }
 
-  if (!form) return;
+    function onKey(e) {
+      if (e.key === "Escape") close();
+    }
+
+    overlay.addEventListener(
+      "click",
+      (e) => {
+        if (e.target === overlay) close();
+      },
+      { once: true }
+    );
+
+    if (closeBtn) closeBtn.addEventListener("click", close, { once: true });
+    document.addEventListener("keydown", onKey);
+
+    if (closeBtn) closeBtn.focus();
+  }
 
   form.addEventListener("submit", async (e) => {
-    hide(noticeOk); hide(noticeErr);
+    hide(noticeOk);
+    hide(noticeErr);
 
-    // Basic client-side required checks (helps even if using Netlify)
-    const must = ["name","phone","email","address","service_type","frequency"];
-    const missing = must.filter(n => !requiredValue(n));
+    // Basic client-side required checks
+    const must = ["name", "phone", "email", "address", "service_type", "frequency"];
+    const missing = must.filter((n) => !requiredValue(n));
+
     const consent = form.querySelector('[name="consent"]');
     if (!consent || !consent.checked) missing.push("consent");
 
     if (missing.length) {
       e.preventDefault();
-      noticeErr.textContent = "Please complete all required fields and accept the consent checkbox.";
-      show(noticeErr);
+      if (noticeErr) {
+        noticeErr.textContent =
+          "Please complete all required fields and accept the consent checkbox.";
+        show(noticeErr);
+      }
       return;
     }
 
-    const action = (form.getAttribute("action") || "").trim();
+    // Always submit via fetch to Netlify Forms, no redirect, no mailto
+    e.preventDefault();
 
-    // If action is a Formspree endpoint, submit via fetch so we can show an in-page success message.
-    if (action.startsWith("https://formspree.io/")) {
-      e.preventDefault();
-
+    if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = "Sending...";
+    }
 
-      try {
-        const formData = new FormData(form);
-        await submitToFormspree(action, formData);
-        form.reset();
-        noticeOk.textContent = "Thanks. We received your request and will contact you shortly.";
-        show(noticeOk);
-      } catch (err) {
-        noticeErr.textContent = err && err.message ? err.message : "Something went wrong. Please try again.";
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeForm(form),
+      });
+
+      if (!res.ok) throw new Error("Submission failed.");
+
+      form.reset();
+      openModal();
+    } catch (err) {
+      if (noticeErr) {
+        noticeErr.textContent = "Could not send your request. Please try again.";
         show(noticeErr);
-      } finally {
+      }
+    } finally {
+      if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = "Request a quote";
       }
-
-      return;
     }
-
-    // No backend configured. Offer a mailto fallback for local testing.
-    if (!action) {
-    return;
-    }
-
-    // Otherwise let the browser submit normally (good for Netlify Forms).
   });
 })();
