@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Novus Bright, Cleaning Services</title>
+  <meta name="description" content="Novus Bright provides reliable residential and small commercial cleaning. Request a quote online." />
+  <link rel="icon" href="logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Novus Bright">
+        <img src="logo.svg" alt="Novus Bright logo" />
+        <div class="name">
+          <b>Novus Bright</b>
+          <span>Cleaning Services</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#quote">Request a quote</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#quote" title="Request a quote">
+          <span class="dot"></span>
+          Get a quote
+        </a>
+        <a class="btn primary" href="#quote" title="Book a cleaning">
+          Request a cleaning
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-left">
+          <div class="kicker"><span class="spark"></span> Residential and small commercial</div>
+          <h1>Professional cleaning that keeps your space consistently bright.</h1>
+          <p>
+            Novus Bright delivers dependable, detail-focused cleaning for homes, apartments, and small offices.
+            Tell us what you need and we will respond with availability and a quote.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#quote">Request a quote</a>
+            <a class="btn" href="#services">See services</a>
+          </div>
+
+          <div class="badges" aria-label="Highlights">
+            <div class="badge"><b>Flexible</b> one-time or recurring</div>
+            <div class="badge"><b>Transparent</b> quote before we clean</div>
+            <div class="badge"><b>Careful</b> respectful of your home</div>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <div class="stat">
+            <div class="pill">1</div>
+            <div>
+              <b>Submit your request</b>
+              <span>Service type, frequency, and details</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="pill">2</div>
+            <div>
+              <b>We confirm and quote</b>
+              <span>By email or phone, typically same day</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="pill">3</div>
+            <div>
+              <b>We clean and follow up</b>
+              <span>Quality check, then schedule if recurring</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <h3>Service area</h3>
+            <p>We cover most of the bay area.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Common cleaning packages. Customize as needed.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="feature">
+            <h3>Standard cleaning</h3>
+            <p>Great for weekly, biweekly, or monthly maintenance.</p>
+          </div>
+          <div class="feature">
+            <h3>Deep cleaning</h3>
+            <p>Extra detail for kitchens, bathrooms, baseboards, and more.</p>
+          </div>
+          <div class="feature">
+            <h3>Move-in or move-out</h3>
+            <p>Reset the space before handing over keys or moving in.</p>
+          </div>
+          <div class="feature">
+            <h3>Small office cleaning</h3>
+            <p>Desks, common areas, restrooms, and trash removal.</p>
+          </div>
+          <div class="feature">
+            <h3>Add-ons</h3>
+            <p>Inside fridge, inside oven, windows, laundry, and more.</p>
+          </div>
+          <div class="feature">
+            <h3>By request</h3>
+            <p>Tell us what matters most. We will tailor the scope.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container split">
+        <div class="card panel">
+          <div class="section-title">
+            <h2>What to expect</h2>
+          </div>
+          <ul class="list">
+            <li>Upfront confirmation of scope, timing, and price.</li>
+            <li>Arrival window and simple check-in before starting.</li>
+            <li>Finishing walkthrough, photos on request.</li>
+            <li>Option to schedule recurring visits.</li>
+          </ul>
+        </div>
+
+        <div class="card panel">
+          <div class="section-title">
+            <h2>Helpful info to share</h2>
+          </div>
+          <ul class="list">
+            <li>Bedrooms, bathrooms, and approximate size.</li>
+            <li>Desired frequency and preferred day and time.</li>
+            <li>Access notes, parking, pets, and focus areas.</li>
+            <li>Add-ons (fridge, oven, inside cabinets, windows).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote">
+      <div class="container split">
+        <div class="card panel">
+          <div class="section-title">
+            <h2>Request a quote</h2>
+          </div>
+          <p>
+            Fill out the form and we will contact you to confirm details.
+            Required fields are marked.
+          </p>
+
+          <div id="noticeOk" class="notice" role="status"></div>
+          <div id="noticeErr" class="notice error" role="alert"></div>
+
+          <!--
+            FORM DELIVERY OPTIONS (pick one):
+            A) Netlify Forms (no code). Deploy to Netlify, keep action empty, and Netlify will capture submissions.
+               - Keep data-netlify="true" and the hidden "form-name" input.
+               - In Netlify: Site settings -> Forms -> Notifications -> add your email.
+
+            B) Formspree (no server). Create a form at formspree.io and paste your endpoint in action:
+               action="https://formspree.io/f/XXXXXXX"
+
+            C) Your own backend. Point action to your server endpoint.
+          -->
+          <form id="quoteForm" name="novus-bright-quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="">
+            <input type="hidden" name="form-name" value="novus-bright-quote" />
+            <p style="display:none">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
+
+            <label>
+              Full name (required)
+              <input name="name" type="text" placeholder="Your name" required />
+            </label>
+
+            <label>
+              Phone (required)
+              <input name="phone" type="tel" placeholder="(555) 123-4567" required />
+            </label>
+
+            <label>
+              Email (required)
+              <input name="email" type="email" placeholder="you@email.com" required />
+            </label>
+
+            <label>
+              Address (required)
+              <input name="address" type="text" placeholder="Street address" required />
+            </label>
+
+            <label>
+              Service type (required)
+              <select name="service_type" required>
+                <option value="" selected>Select one</option>
+                <option>Standard cleaning</option>
+                <option>Deep cleaning</option>
+                <option>Move-in cleaning</option>
+                <option>Move-out cleaning</option>
+                <option>Small office cleaning</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label>
+              Frequency (required)
+              <select name="frequency" required>
+                <option value="" selected>Select one</option>
+                <option>One-time</option>
+                <option>Weekly</option>
+                <option>Biweekly</option>
+                <option>Monthly</option>
+                <option>Occasional</option>
+              </select>
+            </label>
+
+            <label>
+              Bedrooms
+              <input name="bedrooms" type="number" min="0" step="1" placeholder="e.g., 2" />
+            </label>
+
+            <label>
+              Bathrooms
+              <input name="bathrooms" type="number" min="0" step="1" placeholder="e.g., 2" />
+            </label>
+
+            <label>
+              Preferred date
+              <input name="preferred_date" type="date" />
+            </label>
+
+            <label>
+              Preferred time
+              <select name="preferred_time">
+                <option value="" selected>Select one</option>
+                <option>Morning</option>
+                <option>Midday</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>Flexible</option>
+              </select>
+            </label>
+
+            <label>
+              Pets in home?
+              <select name="pets">
+                <option value="" selected>Select one</option>
+                <option>No</option>
+                <option>Yes - dog(s)</option>
+                <option>Yes - cat(s)</option>
+                <option>Yes - other</option>
+              </select>
+            </label>
+
+            <label>
+              Add-ons
+              <select name="addons">
+                <option value="" selected>Select one</option>
+                <option>None</option>
+                <option>Inside fridge</option>
+                <option>Inside oven</option>
+                <option>Windows</option>
+                <option>Laundry</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label class="full">
+              Notes (access, parking, focus areas, timing, etc.)
+              <textarea name="notes" placeholder="Tell us anything important for the quote."></textarea>
+            </label>
+
+            <label class="checkbox full">
+              <input name="consent" type="checkbox" />
+              I confirm this is a request for service and I consent to be contacted by phone or email.
+            </label>
+
+            <div class="form-actions">
+              <button id="submitBtn" class="btn primary" type="submit">Request a quote</button>
+              <div class="note">
+                <span id="mailtoTarget" data-email="hello@novusbright.com"></span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="card panel">
+          <div class="section-title">
+            <h2>Contact</h2>
+          </div>
+          <p>
+            Replace the placeholders below with your real contact details.
+          </p>
+          <div class="feature">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@novusbright.com">hello@novusbright.com</a></p>
+          </div>
+          <div class="feature">
+            <h3>Phone</h3>
+            <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+          </div>
+          <div class="feature">
+            <h3>Hours</h3>
+            <p>Mon-Sat, 8:00am-6:00pm</p>
+          </div>
+          <div class="feature">
+            <h3>Social</h3>
+            <p>Add your Instagram, Facebook, or Google Business Profile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-title">
+          <h2>FAQ</h2>
+          <p>Quick answers for common questions.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="feature">
+            <h3>Do you bring supplies?</h3>
+            <p>Yes, unless you prefer we use specific products you provide.</p>
+          </div>
+          <div class="feature">
+            <h3>How do you price cleanings?</h3>
+            <p>Pricing depends on size, scope, condition, and frequency. We quote before we clean.</p>
+          </div>
+          <div class="feature">
+            <h3>Can I request certain areas?</h3>
+            <p>Yes. Use the Notes field to list priorities and any areas to avoid.</p>
+          </div>
+          <div class="feature">
+            <h3>Do I need to be home?</h3>
+            <p>Not necessarily. We can coordinate access details in advance.</p>
+          </div>
+          <div class="feature">
+            <h3>How do recurring cleanings work?</h3>
+            <p>Once you approve the quote, we set a repeating schedule that fits your routine.</p>
+          </div>
+          <div class="feature">
+            <h3>What is your cancellation policy?</h3>
+            <p>Add your policy here, for example 24-hour notice is appreciated.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="card footer-card">
+          <div class="mini">
+            <img src="logo.svg" alt="Novus Bright logo" />
+            <div>
+              <b>Novus Bright</b>
+              <span>Cleaning Services</span>
+            </div>
+          </div>
+          <p style="margin-top:10px">
+            Consistent, detailed cleaning for homes and small offices.
+          </p>
+          <small>© <span id="year"></span> Novus Bright. All rights reserved.</small>
+        </div>
+
+        <div class="card footer-card">
+          <b>Next steps to make the form email you</b>
+          <ol class="list">
+            <li>Fastest: use Formspree and paste your endpoint into the form action.</li>
+            <li>No-code: deploy on Netlify and enable Form Notifications to your email.</li>
+            <li>Custom: connect your own backend with email delivery.</li>
+          </ol>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
