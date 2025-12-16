@@ -104,14 +104,7 @@
 
     // No backend configured. Offer a mailto fallback for local testing.
     if (!action) {
-      e.preventDefault();
-
-      const data = Object.fromEntries(new FormData(form).entries());
-      const to = (document.getElementById("mailtoTarget")?.getAttribute("data-email") || "hello@novusbright.com").trim();
-      const subject = encodeURIComponent("Cleaning request - Novus Bright");
-      const body = toMailtoBody(data);
-      window.location.href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
-      return;
+    return;
     }
 
     // Otherwise let the browser submit normally (good for Netlify Forms).
