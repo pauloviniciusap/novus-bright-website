@@ -4,6 +4,36 @@
   const noticeErr = document.getElementById("noticeErr");
   const submitBtn = document.getElementById("submitBtn");
   const yearEl = document.getElementById("year");
+  // Mobile menu toggle
+  const headerEl = document.querySelector("header");
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (hamburger && mobileMenu) {
+    const setOpen = (open) => {
+      hamburger.setAttribute("aria-expanded", String(open));
+      hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      mobileMenu.hidden = !open;
+    };
+
+    hamburger.addEventListener("click", () => {
+      const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    // Close after clicking a link
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target && e.target.matches("a")) setOpen(false);
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+
+
+
 
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
   if (!form) return;
@@ -62,6 +92,9 @@
 
     if (closeBtn) closeBtn.focus();
   }
+
+
+  
 
   form.addEventListener("submit", async (e) => {
     hide(noticeOk);
