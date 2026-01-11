@@ -36,6 +36,8 @@ header{
   border-bottom: 1px solid var(--line);
 }
 
+
+
 .nav{
   display:flex;
   align-items:center;
@@ -412,3 +414,98 @@ footer{
   justify-content: flex-end;
   margin-top: 14px;
 }
+
+/* Cleaner mobile header */
+.hamburger{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+}
+.hamburger:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); }
+.hamburger:active{ transform: translateY(1px); }
+
+.mobile-menu{
+  border-top: 1px solid var(--line);
+  background: rgba(15,17,21,.72);
+  backdrop-filter: blur(12px);
+}
+.mobile-menu-inner{
+  padding: 10px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mobile-menu a{
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+}
+.mobile-menu a:hover{
+  background: rgba(255,255,255,.06);
+  color: var(--ink);
+}
+
+@media (max-width: 760px){
+  /* Force single-row header */
+  header .nav{
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding: 10px 0;
+  }
+
+  /* Hide desktop nav completely on mobile */
+  header .navlinks{
+    display: none !important;
+  }
+
+  /* Brand tighter so it fits */
+  header .brand{
+    min-width: 0;
+    gap: 10px;
+  }
+  header .brand img{
+    width: 32px;
+    height: 32px;
+  }
+  header .brand .name b{ font-size: 14px; }
+  header .brand .name span{ font-size: 11px; }
+
+  /* CTA and hamburger spacing */
+  header .cta{
+    min-width: unset !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Make the primary button less chunky on mobile */
+  header .cta .btn.primary{
+    padding: 9px 12px;
+    border-radius: 13px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  header .hamburger{
+    display: inline-flex;
+  }
+}
+
+/* Extra-tight phones: hide the "Cleaning Services" line */
+@media (max-width: 380px){
+  header .brand .name span{
+    display: none;
+  }
+}
+
